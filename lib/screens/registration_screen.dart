@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mobile_atm_giver/configMaps.dart';
-import 'package:mobile_atm_giver/main.dart';
-import 'package:mobile_atm_giver/screens/login_screen.dart';
-import 'package:mobile_atm_giver/screens/main_screen.dart';
-import 'package:mobile_atm_giver/widgets/progress_dialog.dart';
+import 'package:mobile_atm/main.dart';
+import 'package:mobile_atm/screens/login_screen.dart';
+import 'package:mobile_atm/screens/main_screen.dart';
+import 'package:mobile_atm/widgets/progress_dialog.dart';
 
+//ignore: must_be_immutable
 class RegistrationScreen extends StatelessWidget {
   RegistrationScreen({Key? key}) : super(key: key);
 
@@ -39,7 +39,7 @@ class RegistrationScreen extends StatelessWidget {
                 height: 15.0,
               ),
               const Text(
-                'Create Account Giver',
+                'Create Account Customer',
                 style: TextStyle(
                   fontSize: 24.0,
                   fontFamily: "Brand Bold",
@@ -144,9 +144,9 @@ class RegistrationScreen extends StatelessWidget {
                           registerNewUser(context);
                         }
                       },
-                      child: Container(
+                      child: const SizedBox(
                         height: 50.0,
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             'Register',
                             style: TextStyle(
@@ -158,7 +158,7 @@ class RegistrationScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(24.0),
                       ),
                     ),
-                    FlatButton(
+                    TextButton(
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(
                             context, LoginScreen.id, (route) => false);
@@ -207,11 +207,7 @@ class RegistrationScreen extends StatelessWidget {
         "phone": phoneTextEditingController.text.trim(),
       };
 
-      giversRef.child(firebaseUser.uid).set(userData);
-
-      currentFirebaseUser = firebaseUser;
-      currentUserName = userData["name"];
-
+      usersRef.child(firebaseUser.uid).set(userData);
       displayToastMessage(
           "Congratulations, your account has been created.", context);
 

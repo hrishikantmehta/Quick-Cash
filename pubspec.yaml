@@ -1,7 +1,7 @@
-name: mobile_atm_giver
+name: mobile_atm
 description: A new Flutter project.
 
-publish_to: 'none'
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
@@ -48,4 +48,3 @@ flutter:
     - family: Brand Bold
       fonts:
         - asset: fonts/bolt-semibold.ttf
-

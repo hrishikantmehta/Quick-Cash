@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_atm_giver/configMaps.dart';
-import 'package:mobile_atm_giver/data_handler/app_data.dart';
-import 'package:mobile_atm_giver/main.dart';
-import 'package:mobile_atm_giver/screens/main_screen.dart';
-import 'package:mobile_atm_giver/screens/registration_screen.dart';
-import 'package:mobile_atm_giver/widgets/progress_dialog.dart';
+import 'package:mobile_atm/config_maps.dart';
+import 'package:mobile_atm/data_handler/app_data.dart';
+import 'package:mobile_atm/main.dart';
+import 'package:mobile_atm/screens/main_screen.dart';
+import 'package:mobile_atm/screens/registration_screen.dart';
+import 'package:mobile_atm/widgets/progress_dialog.dart';
 
+//ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                 height: 15.0,
               ),
               const Text(
-                'Login Giver',
+                'Login Customer',
                 style: TextStyle(
                   fontSize: 24.0,
                   fontFamily: "Brand Bold",
@@ -102,9 +102,9 @@ class LoginScreen extends StatelessWidget {
                           loginAndAuthenticateUser(context);
                         }
                       },
-                      child: Container(
+                      child: const SizedBox(
                         height: 50.0,
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             'Login',
                             style: TextStyle(
@@ -116,7 +116,7 @@ class LoginScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(24.0),
                       ),
                     ),
-                    FlatButton(
+                    TextButton(
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(
                             context, RegistrationScreen.id, (route) => false);
@@ -157,10 +157,13 @@ class LoginScreen extends StatelessWidget {
         .user;
 
     if (firebaseUser != null) {
-      DataSnapshot snapshot = await giversRef.child(firebaseUser.uid).get();
+      final snapshot = await usersRef.child(firebaseUser.uid).get();
       if (snapshot.exists) {
-        currentFirebaseUser = firebaseUser;
-        currentUserName = snapshot.child('name').value.toString();
+        currentUserData = CurrentUserData(
+          firebaseUser.uid,
+          snapshot.child("name").value.toString(),
+        );
+
         Navigator.pushNamedAndRemoveUntil(
             context, MainScreen.id, (route) => false);
         displayToastMessage("You are logged In now", context);

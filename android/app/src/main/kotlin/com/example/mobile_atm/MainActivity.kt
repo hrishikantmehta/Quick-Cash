@@ -1,4 +1,4 @@
-package com.example.mobile_atm_giver
+package com.example.mobile_atm
 
 import io.flutter.embedding.android.FlutterActivity
 

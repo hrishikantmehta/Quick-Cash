@@ -1,4 +1,4 @@
-# mobile_atm_giver
+# mobile_atm
 
 A new Flutter project.
 
