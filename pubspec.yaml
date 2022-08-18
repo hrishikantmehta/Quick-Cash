@@ -1,0 +1,51 @@
+name: mobile_atm_giver
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  firebase_core: ^1.15.0
+  firebase_auth: ^3.3.15
+  firebase_database: ^9.0.12
+  fluttertoast: ^8.0.9
+  google_maps_flutter: ^2.1.3
+  geolocator: ^8.2.0
+  provider: ^6.0.2
+  flutter_geofire: ^2.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - images/logo.png
+    - images/desticon.png
+    - images/redmarker.png
+    - images/user_icon.png
+
+  fonts:
+    - family: Signatra
+      fonts:
+        - asset: fonts/Signatra.ttf
+    - family: Brand-Regular
+      fonts:
+        - asset: fonts/bolt-regular.ttf
+    - family: Brand Bold
+      fonts:
+        - asset: fonts/bolt-semibold.ttf
+
